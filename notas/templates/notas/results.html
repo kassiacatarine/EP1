@@ -1,0 +1,23 @@
+{% load static %}
+<html>
+    <head>
+        <title>Vots</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'notas/style.css' %}" />
+        <link href="https://fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <div>
+            <h1><a href="/">Vots Enquetes</a></h1>
+        </div>
+
+        <h1>{{ question.question_text }}</h1>
+
+        <ul>
+        {% for choice in question.choice_set.all %}
+            <li>{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
+        {% endfor %}
+        </ul>
+
+        <a href="{% url 'notas:detail' question.id %}"><h2>Vote again?</h2></a>
+    </body>
+</html>
